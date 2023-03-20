@@ -1,0 +1,58 @@
+01. Employees Table:
+    a. Query to select all columns and rows from the employees table:
+        SELECT *
+        FROM employees;
+        *This command selects all columns and rows from the "employees" table and returns the data in tabular form.
+
+    b. Query to select only the name and salary columns of all employees with a salary greater than 50000:
+        SELECT name, salary
+        FROM employees
+        WHERE salary > 50000;
+        *This query selects only the name and salary columns from the employees table for all employees whose salary is greater than 50000 and returns the data in tabular form.
+
+    c. Query to calculate the average salary of all employees:
+        SELECT AVG(salary)
+        FROM employees;
+        *This query calculates the average salary of all employees in the employees table and returns the result.
+
+    d. Query to count the number of employees who work in the "Marketing" department:
+        SELECT COUNT(*) AS total_employees
+        FROM employees
+        WHERE department_id = (SELECT id FROM departments WHERE name = 'Marketing');
+        *This query counts the number of employees in the employees table who work in the "Marketing" department by first selecting the id of the Marketing department from the departments table and then using it to count the number of employees in the employees table whose department_id is equal to the id of the Marketing department.
+
+    e. Query to update the salary column of the employee with an id of 1001 to 60000:
+        UPDATE employees
+        SET salary = 60000
+        WHERE id = 1001;
+        * This query updates the salary column of the employee with an id of 1001 in the employees table to 60000.
+
+    f. Query to delete all employees whose salary is less than 30000:
+        DELETE FROM employees
+        WHERE salary < 30000;
+        * This query deletes all employees from the employees table whose salary is less than 30000.
+
+
+02. Departments Table:
+    a. Query to select all columns and rows from the departments table:
+        SELECT *
+        FROM departments;
+        * This query selects all columns and rows from the departments table and returns the data in tabular form.
+
+    b. Query to select only the name and manager columns of the "Finance" department:
+        SELECT name, manager
+        FROM departments
+        WHERE name = 'Finance';
+        * This query selects only the name and manager columns from the departments table for the "Finance" department and returns the data in tabular form.
+
+    c. Query to calculate the total number of employees in each department:
+        SELECT departments.name, COUNT(*) AS total_employees
+        FROM employees
+        JOIN departments ON employees.department_id = departments.id
+        GROUP BY departments.name;
+        * This query calculates the total number of employees in each department by joining the employees table with the departments table on the department_id and id columns, respectively, and grouping the result by the name of each department.
+
+    d. Query to insert a new department called "Research" with a manager named "John Doe":
+        INSERT INTO departments
+        (name, manager) VALUES ('Research', 'John Doe');
+        * This query inserts a new row into the departments table with the name "Research" and the manager "John Doe".
